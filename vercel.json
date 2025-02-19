@@ -2,14 +2,19 @@
     "version": 2,
     "builds": [
         {
-            "src": "api/index.py",
-            "use": "@vercel/python"
+            "src": "wsgi.py",
+            "use": "@vercel/python",
+            "config": { 
+                "maxLambdaSize": "15mb",
+                "includeFiles": "templates/**",
+                "runtime": "python3.9"
+            }
         }
     ],
     "routes": [
         {
             "src": "/(.*)",
-            "dest": "/api/index.py"
+            "dest": "wsgi.py"
         }
     ],
     "env": {
