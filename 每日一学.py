@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-from datetime import datetime
+import os
 
 app = Flask(__name__)
 
@@ -39,5 +39,4 @@ def index():
                          news=news)
 
 # Vercel needs the app object to be directly accessible
-if __name__ == '__main__':
-    app.run()
+app.debug = False
