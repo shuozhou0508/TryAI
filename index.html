@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>互联网学习平台</title>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 40px;
+            font-size: 2.5em;
+        }
+        h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        .highlight {
+            color: #3498db;
+            font-weight: bold;
+        }
+        .list-item {
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+        .news-date {
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        .section-icon {
+            font-size: 1.5em;
+            margin-right: 10px;
+            color: #3498db;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎓 每日互联网学习</h1>
+        
+        <!-- Psychology Section -->
+        <div class="card">
+            <h2><span class="section-icon">🧠</span>心理学知识</h2>
+            <h3 class="highlight">{{ psychology.name }}</h3>
+            <p><strong>提出者：</strong>{{ psychology.originator }}</p>
+            <p><strong>专业解释：</strong>{{ psychology.explanation }}</p>
+            <p><strong>通俗解释：</strong>{{ psychology.simple_explanation }}</p>
+            <p><strong>应用案例：</strong>{{ psychology.example }}</p>
+        </div>
+
+        <!-- Methodology Section -->
+        <div class="card">
+            <h2><span class="section-icon">📊</span>产品方法论</h2>
+            <h3 class="highlight">{{ methodology.name }}</h3>
+            <p>{{ methodology.explanation }}</p>
+            <ul>
+                {% for point in methodology.key_points %}
+                <li class="list-item">{{ point }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <!-- News Section -->
+        <div class="card">
+            <h2><span class="section-icon">📰</span>互联网热点</h2>
+            <h3 class="highlight">{{ news.title }}</h3>
+            <p class="news-date">{{ news.date }}</p>
+            <p>{{ news.content }}</p>
+        </div>
+    </div>
+</body>
+</html>
