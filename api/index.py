@@ -1,8 +1,13 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, send_from_directory
 import os
 
 app = Flask(__name__)
 app.template_folder = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'templates'))
+app.static_folder = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'static'))
+
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(app.static_folder, 'favicon.ico')
 
 @app.route('/', methods=['GET'])
 def home():
