@@ -1,10 +1,10 @@
-from flask import Flask, render_template_string
-import os
+from fastapi import FastAPI
+from fastapi.responses import HTMLResponse
 
-app = Flask(__name__)
+app = FastAPI()
 
-@app.route('/')
-def home():
+@app.get("/", response_class=HTMLResponse)
+async def home():
     # Psychology concept
     psychology = {
         'name': '锚定效应 (Anchoring Effect)',
@@ -32,33 +32,82 @@ def home():
         'date': '2024年2月',
         'content': '微软推出了新一代Windows 11更新，集成了更强大的AI助手Copilot。这次更新使AI功能更深入地融入操作系统，包括智能文件管理、自动化任务处理等功能，标志着个人电脑进入AI时代的重要里程碑。'
     }
-    
-    html = """
+
+    html = f"""
     <!DOCTYPE html>
     <html>
     <head>
-        <title>测试页面</title>
+        <title>每日一学</title>
+        <meta charset="utf-8">
+        <style>
+            body {{
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+                line-height: 1.6;
+                padding: 2rem;
+                max-width: 800px;
+                margin: 0 auto;
+                background-color: #f5f5f5;
+            }}
+            .card {{
+                background: white;
+                border-radius: 8px;
+                padding: 20px;
+                margin-bottom: 20px;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }}
+            h1, h2 {{
+                color: #333;
+            }}
+            .key-points {{
+                list-style-type: none;
+                padding-left: 0;
+            }}
+            .key-points li {{
+                margin-bottom: 10px;
+                padding-left: 20px;
+                position: relative;
+            }}
+            .key-points li:before {{
+                content: "•";
+                position: absolute;
+                left: 0;
+                color: #666;
+            }}
+        </style>
     </head>
     <body>
-        <h1>测试页面</h1>
-        <p>心理学概念：{{ psychology.name }}（{{ psychology.originator }}）</p>
-        <p>解释：{{ psychology.explanation }}</p>
-        <p>简单解释：{{ psychology.simple_explanation }}</p>
-        <p>例子：{{ psychology.example }}</p>
-        <p>产品方法论：{{ methodology.name }}</p>
-        <p>解释：{{ methodology.explanation }}</p>
-        <p>关键点：</p>
-        <ul>
-        {% for point in methodology.key_points %}
-            <li>{{ point }}</li>
-        {% endfor %}
-        </ul>
-        <p>最新新闻：{{ news.title }}（{{ news.date }}）</p>
-        <p>内容：{{ news.content }}</p>
+        <h1>每日一学</h1>
+        
+        <div class="card">
+            <h2>今日心理学概念</h2>
+            <h3>{psychology['name']}</h3>
+            <p><strong>提出者：</strong>{psychology['originator']}</p>
+            <p><strong>解释：</strong>{psychology['explanation']}</p>
+            <p><strong>简单说明：</strong>{psychology['simple_explanation']}</p>
+            <p><strong>实例：</strong>{psychology['example']}</p>
+        </div>
+
+        <div class="card">
+            <h2>产品方法论</h2>
+            <h3>{methodology['name']}</h3>
+            <p>{methodology['explanation']}</p>
+            <h4>关键要点：</h4>
+            <ul class="key-points">
+                {''.join([f'<li>{point}</li>' for point in methodology['key_points']])}
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>科技新闻</h2>
+            <h3>{news['title']}</h3>
+            <p><strong>日期：</strong>{news['date']}</p>
+            <p>{news['content']}</p>
+        </div>
     </body>
     </html>
     """
-    return render_template_string(html, psychology=psychology, methodology=methodology, news=news)
+    return html
 
 if __name__ == '__main__':
-    app.run()
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)
