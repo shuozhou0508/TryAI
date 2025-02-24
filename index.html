@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>美食外卖</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- 顶部城市欢迎栏 -->
+        <header class="welcome-header">
+            <div class="location">
+                <i class="material-icons">location_on</i>
+                <span>欢迎来到上海</span>
+                <i class="material-icons">expand_more</i>
+            </div>
+            <div class="search-bar">
+                <i class="material-icons">search</i>
+                <input type="text" placeholder="搜索商家、美食...">
+            </div>
+        </header>
+
+        <!-- 导航栏 -->
+        <nav class="nav-bar">
+            <div class="nav-item active">
+                <i class="material-icons">restaurant</i>
+                <span>美食</span>
+            </div>
+            <div class="nav-item">
+                <i class="material-icons">local_cafe</i>
+                <span>早餐</span>
+            </div>
+            <div class="nav-item">
+                <i class="material-icons">local_pizza</i>
+                <span>快餐</span>
+            </div>
+            <div class="nav-item">
+                <i class="material-icons">cake</i>
+                <span>甜点</span>
+            </div>
+        </nav>
+
+        <!-- 商家列表 -->
+        <div class="restaurant-list">
+            <!-- 商家卡片 1 -->
+            <div class="restaurant-card">
+                <img src="https://via.placeholder.com/120x120" alt="餐厅图片" class="restaurant-img">
+                <div class="restaurant-info">
+                    <h3>老街口馄饨店</h3>
+                    <div class="rating">
+                        <span class="stars">⭐️⭐️⭐️⭐️⭐️</span>
+                        <span class="score">4.8</span>
+                        <span class="monthly-sales">月售2000+</span>
+                    </div>
+                    <div class="delivery-info">
+                        <span class="delivery-time">30分钟</span>
+                        <span class="distance">1.2km</span>
+                        <span class="delivery-fee">配送费¥3</span>
+                    </div>
+                    <div class="promotion">
+                        <span class="tag">新用户立减¥10</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 商家卡片 2 -->
+            <div class="restaurant-card">
+                <img src="https://via.placeholder.com/120x120" alt="餐厅图片" class="restaurant-img">
+                <div class="restaurant-info">
+                    <h3>川湘居</h3>
+                    <div class="rating">
+                        <span class="stars">⭐️⭐️⭐️⭐️</span>
+                        <span class="score">4.5</span>
+                        <span class="monthly-sales">月售1500+</span>
+                    </div>
+                    <div class="delivery-info">
+                        <span class="delivery-time">35分钟</span>
+                        <span class="distance">2.0km</span>
+                        <span class="delivery-fee">配送费¥4</span>
+                    </div>
+                    <div class="promotion">
+                        <span class="tag">满30减5</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
